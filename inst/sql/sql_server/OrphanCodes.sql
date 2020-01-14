@@ -3,9 +3,12 @@
 {DEFAULT @concept_counts_table = concept_counts}
 {DEFAULT @concept_ids = 72714,72984,74125,74130}
 
-IF OBJECT_ID('tempdb..#starting_concepts', 'U') IS NOT NULL
-  DROP TABLE #starting_concepts;
-  
+DROP TABLE IF EXISTS #starting_concepts CASCADE;
+DROP TABLE IF EXISTS #search_strings CASCADE;
+DROP TABLE IF EXISTS #search_str_top1000 CASCADE;
+DROP TABLE IF EXISTS #search_string_subset CASCADE;
+DROP TABLE IF EXISTS #recommended_concepts CASCADE;
+
 IF OBJECT_ID('tempdb..#concept_synonyms', 'U') IS NOT NULL
   DROP TABLE #concept_synonyms;
   
