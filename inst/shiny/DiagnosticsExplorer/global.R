@@ -3,6 +3,9 @@ dataFolder <- shinySettings$dataFolder
 
 zipFiles <- list.files(dataFolder, pattern = ".zip", full.names = TRUE)
 
+print(dataFolder)
+print(zipFiles)
+
 loadFile <- function(file, folder, overwrite) {
   tableName <- gsub(".csv$", "", file)
   camelCaseName <- SqlRender::snakeCaseToCamelCase(tableName)
