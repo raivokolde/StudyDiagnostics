@@ -27,6 +27,7 @@ for (i in 1:length(zipFiles)) {
   unzip(zipFiles[i], exdir = tempFolder)
 
   csvFiles <- list.files(tempFolder, pattern = ".csv")
+  print(csvFiles)
   lapply(csvFiles, loadFile, folder = tempFolder, overwrite = (i == 1))
 
   unlink(tempFolder, recursive = TRUE)
