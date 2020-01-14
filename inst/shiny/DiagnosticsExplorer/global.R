@@ -32,7 +32,7 @@ for (i in 1:length(zipFiles)) {
   unlink(tempFolder, recursive = TRUE)
 }
 
-cohort <- unique(cohort)
-covariate <- unique(covariate)
-conceptSets <- unique(includedSourceConcept[, c("cohortId", "conceptSetId", "conceptSetName")])
+# cohort <- unique(cohort)
+# covariate <- unique(covariate)
+# conceptSets <- unique(includedSourceConcept[, c("cohortId", "conceptSetId", "conceptSetName")])
 
