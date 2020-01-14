@@ -29,7 +29,7 @@ for (i in 1:length(zipFiles)) {
   #csvFiles <- list.files(tempFolder, pattern = ".csv")
   csvFiles <- list.files(file.path(tempFolder, gsub(".zip", "", basename(zipFiles[i]))), pattern = ".csv")
   print(csvFiles)
-  lapply(csvFiles, loadFile, folder = file.path(tempFolder, gsub(".zip", "", basename(zipFiles[i])), overwrite = (i == 1))
+  lapply(csvFiles, loadFile, folder = file.path(tempFolder, gsub(".zip", "", basename(zipFiles[i]))), overwrite = (i == 1))
 
   unlink(tempFolder, recursive = TRUE)
 }
