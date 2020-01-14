@@ -1,5 +1,5 @@
-IF OBJECT_ID('tempdb..#inc_num') IS NOT NULL
-  DROP TABLE #inc_num;
+
+DROP TABLE IF EXISTS #inc_num CASCADE;
 
 SELECT YEAR(c.cohort_start_date) AS index_year,
 	FLOOR((YEAR(c.cohort_start_date) - p.year_of_birth) / 10) AS age_group_10y,
@@ -33,8 +33,7 @@ FROM (
 	FLOOR((YEAR(c.cohort_start_date) - p.year_of_birth) / 10),
 	p.gender_concept_id;
 
-IF OBJECT_ID('tempdb..#inc_denom') IS NOT NULL
-  DROP TABLE #inc_denom;
+DROP TABLE IF EXISTS #inc_denom CASCADE;
 
 SELECT iy.index_year,
 	FLOOR((iy.index_year - p.year_of_birth) / 10) AS age_group_10y,
@@ -56,8 +55,8 @@ GROUP BY iy.index_year,
 	FLOOR((iy.index_year - p.year_of_birth) / 10),
 	p.gender_concept_id;
 
-IF OBJECT_ID('tempdb..#inc_denom_exclude') IS NOT NULL
-  DROP TABLE #inc_denom_exclude;
+DROP TABLE IF EXISTS #inc_denom_exclude CASCADE; 
+
 
 SELECT iy.index_year,
 	FLOOR((iy.index_year - p.year_of_birth) / 10) AS age_group_10y,
@@ -89,8 +88,8 @@ GROUP BY iy.index_year,
 	FLOOR((iy.index_year - p.year_of_birth) / 10),
 	p.gender_concept_id;
 
-IF OBJECT_ID('tempdb..#inc_summary') IS NOT NULL
-  DROP TABLE #inc_summary;
+DROP TABLE IF EXISTS #inc_summary CASCADE; 
+
 
 SELECT in1.index_year,
 	in1.age_group_10y AS age_group,
