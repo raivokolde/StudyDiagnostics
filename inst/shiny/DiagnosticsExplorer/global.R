@@ -3,9 +3,6 @@ dataFolder <- shinySettings$dataFolder
 
 zipFiles <- list.files(dataFolder, pattern = ".zip", full.names = TRUE)
 
-print(dataFolder)
-print(zipFiles)
-
 loadFile <- function(file, folder, overwrite) {
   tableName <- gsub(".csv$", "", file)
   camelCaseName <- SqlRender::snakeCaseToCamelCase(tableName)
@@ -26,17 +23,12 @@ for (i in 1:length(zipFiles)) {
   dir.create(tempFolder)
   unzip(zipFiles[i], exdir = tempFolder)
 
-  #csvFiles <- list.files(tempFolder, pattern = ".csv")
-  csvFiles <- list.files(file.path(tempFolder, gsub(".zip", "", basename(zipFiles[i]))), pattern = ".csv")
-  print(csvFiles)
-  lapply(csvFiles, loadFile, folder = file.path(tempFolder, gsub(".zip", "", basename(zipFiles[i]))), overwrite = (i == 1))
+  csvFiles <- list.files(tempFolder, pattern = ".csv")
+  lapply(csvFiles, loadFile, folder = tempFolder, overwrite = (i == 1))
 
   unlink(tempFolder, recursive = TRUE)
 }
 
-print(ls())
-
 cohort <- unique(cohort)
 covariate <- unique(covariate)
 conceptSets <- unique(includedSourceConcept[, c("cohortId", "conceptSetId", "conceptSetName")])
-
